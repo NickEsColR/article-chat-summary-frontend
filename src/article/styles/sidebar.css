@@ -1,0 +1,26 @@
+.article {
+    cursor: pointer;
+
+    &:hover {
+        background-color:rgb(41, 45, 49);
+    }
+}
+
+span.article {
+    padding: 8px 16px;
+    font-size: 1.2rem;
+}
+
+.articles-container::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.articles-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+    display: none;
+}
+
+.articles-container:hover::-webkit-scrollbar-thumb {
+    display: block;
+}
