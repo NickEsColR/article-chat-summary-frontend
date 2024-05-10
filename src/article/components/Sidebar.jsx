@@ -21,9 +21,12 @@ export const Sidebar = () => {
                         return (
                             <li
                                 key={article.id}
-                                className="nav-link text-white article"
+                                className="nav-link text-white article d-flex justify-content-between align-items-center"
                             >
                                 {article.title}
+                                <button className="btn btn-dark">
+                                    <i className="fas fa-trash-alt"></i>
+                                </button>
                             </li>
                         );
                     })}
@@ -31,12 +34,10 @@ export const Sidebar = () => {
             </div>
 
             <hr />
-            <div style={{ width: "100%" }}>
-                <span className="article">
-                    <i className="fas fa-plus"></i>
-                    &nbsp; Add new article
-                </span>
-            </div>
+            <button className="btn btn-dark d-flex justify-content-between align-items-center">
+                <span>Add new article</span>
+                <i className="fas fa-plus"></i>
+            </button>
         </div>
     );
 };

@@ -14,7 +14,7 @@ const customStyles = {
 export const SummaryModal = () => {
     return (
         <Modal
-            isOpen={true}
+            isOpen={false}
             style={customStyles}
             className={"modal"}
             overlayClassName={"bg-modal"}
