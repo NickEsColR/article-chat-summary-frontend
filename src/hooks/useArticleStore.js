@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveArticle } from "../store";
+import { deleteArticle, setActiveArticle } from "../store";
 
 
 export const useArticleStore = () => {
@@ -14,12 +14,17 @@ export const useArticleStore = () => {
         dispatch(setActiveArticle)
     }
 
+    const onDeleteArticle = (id) => {
+        dispatch(deleteArticle(id))
+    }
+
     return {
         //properties
         activeArticle,
         articles,
 
         //methods
-        onSetActiveArticle
+        onSetActiveArticle,
+        onDeleteArticle
     }
 }

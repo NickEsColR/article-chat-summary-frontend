@@ -2,7 +2,7 @@ import { useArticleStore } from "../../hooks";
 import "../styles/sidebar.css";
 
 export const Sidebar = () => {
-    const { articles } = useArticleStore();
+    const { articles, onSetActiveArticle, onDeleteArticle } = useArticleStore();
 
     return (
         <div
@@ -17,11 +17,16 @@ export const Sidebar = () => {
                     {articles.map((article) => {
                         return (
                             <li
-                                key={article.id}
+                                key={article._id}
                                 className="nav-link text-white article d-flex justify-content-between align-items-center"
                             >
                                 {article.title}
-                                <button className="btn btn-dark">
+                                <button
+                                    className="btn btn-dark"
+                                    onClick={() => {
+                                        onDeleteArticle(article._id);
+                                    }}
+                                >
                                     <i className="fas fa-trash-alt"></i>
                                 </button>
                             </li>
