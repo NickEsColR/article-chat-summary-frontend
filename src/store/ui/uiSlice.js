@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     isSummaryModalOpen: false,
+    isNewArticleOpen: false,
 };
 
 export const uiSlice = createSlice({
@@ -14,7 +15,18 @@ export const uiSlice = createSlice({
         onCloseSummaryModal: (state) => {
             state.isSummaryModalOpen = false;
         },
+        onOpenNewArticle: (state) => {
+            state.isNewArticleOpen = true;
+        },
+        onCloseNewArticle: (state) => {
+            state.isNewArticleOpen = false;
+        },
     },
 });
 
-export const { onOpenSummaryModal, onCloseSummaryModal } = uiSlice.actions;
+export const {
+    onOpenSummaryModal,
+    onCloseSummaryModal,
+    onOpenNewArticle,
+    onCloseNewArticle,
+} = uiSlice.actions;

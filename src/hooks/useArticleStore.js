@@ -1,6 +1,6 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import { addAnswer, addQuestion, deleteArticle, setActiveArticle, setChatMessages } from "../store";
+import { addAnswer, addNewArticle, addQuestion, deleteArticle, setActiveArticle, setChatMessages } from "../store";
 
 export const useArticleStore = () => {
 
@@ -41,6 +41,18 @@ export const useArticleStore = () => {
         }, 3000);
     };
 
+    const startCreatingArticle = async (title, url) => {
+        //TODO: send request to the server to create the article
+        const newArticle = {
+            id: articles.length + 1,
+            title,
+            summary:"Amet ad commodo ut sunt laborum irure proident sunt fugiat anim veniam nostrud. Eu quis deserunt sint ea et anim eu ex elit est minim minim minim. Reprehenderit incididunt consectetur aute aliquip do fugiat reprehenderit officia proident est sit. Ut quis amet est laboris excepteur enim dolor duis do nulla laboris ea et. Dolore eu esse anim laboris ad id. Sunt aliquip veniam ex do enim eu fugiat minim in.",
+        };
+        dispatch(addNewArticle(newArticle))
+        dispatch(setActiveArticle(newArticle));
+        dispatch(setChatMessages([]))
+    }
+
     return {
         //properties
         activeArticle,
@@ -51,6 +63,6 @@ export const useArticleStore = () => {
         onSetActiveArticle,
         onDeleteArticle,
         startAskingQuestion,
-
+        startCreatingArticle
     };
 };
