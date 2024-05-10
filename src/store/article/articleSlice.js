@@ -24,11 +24,11 @@ const initialState = {
         chat: [
             {
                 role: "user",
-                text: "Hello",
+                content: "Hello",
             },
             {
                 role: "bot",
-                text: "Hi! How can I help you today?",
+                content: "Hi! How can I help you today?",
             },
         ],
     },
