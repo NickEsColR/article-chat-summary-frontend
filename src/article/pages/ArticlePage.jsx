@@ -1,6 +1,5 @@
 import { Sidebar } from "../";
-import { ChatView, NothingSelectedView } from "../../chat";
-import { SummaryModal } from "../components/SummaryModal";
+import { ChatView, NothingSelectedView } from "../../chat"
 
 export const ArticlePage = () => {
     return (
@@ -14,7 +13,6 @@ export const ArticlePage = () => {
                     <ChatView />
                 </div>
             </div>
-            <SummaryModal />
         </>
     );
 };

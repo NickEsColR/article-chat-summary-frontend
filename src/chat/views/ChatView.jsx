@@ -1,9 +1,11 @@
 import { Header, Message, Prompter } from "..";
+import { SummaryModal } from "../../article/components/SummaryModal";
 
 export const ChatView = () => {
     return (
         <div className="d-flex flex-column text-grey bg-light" style={{height:"100vh"}}>
             <Header />
+            <SummaryModal />
             <div className="overflow-auto text-center" style={{marginTop:"70px", marginBottom:"70px"}}>
                 <Message role={"assistant"} content={"primero"}/>
                 <Message role={"user"} content={"Pregunta del usuario"}/>

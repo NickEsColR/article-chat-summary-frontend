@@ -1,15 +1,29 @@
 import React from "react";
+import { useUiStore } from "../../hooks";
 
 export const Header = () => {
+    const { openSummaryModal, isSummaryModalOpen, closeSummaryModal } =
+        useUiStore();
+
+    const onClick = () => {
+        isSummaryModalOpen ? closeSummaryModal() : openSummaryModal();
+    };
     return (
         <nav
             className="navbar border-bottom col-9"
             style={{ position: "fixed", top: 0, zIndex: 1000 }}
         >
             <span className="navbar-brand">&nbsp;&nbsp;&nbsp;Articulo 1</span>
-            <span className="navbar-text btn">
-                <i class="fa-regular fa-eye"></i>&nbsp; Summary
-            </span>
+            <button className="navbar-text btn" onClick={onClick}>
+                <i
+                    className={`${
+                        isSummaryModalOpen
+                            ? "fa-regular fa-eye-slash"
+                            : "fa-regular fa-eye"
+                    }`}
+                ></i>
+                &nbsp; Summary
+            </button>
         </nav>
     );
 };

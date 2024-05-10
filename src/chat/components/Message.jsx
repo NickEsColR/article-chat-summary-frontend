@@ -1,14 +1,14 @@
 export const Message = ({ role, content }) => {
     return (
-        <div className="">
+        <div>
             {role === "user" ? (
                 <>
-                    <i class="fa-regular fa-user"></i>
+                    <i className="fa-regular fa-user"></i>
                     <strong>you</strong>
                 </>
             ) : (
                 <>
-                    <i class="fa-solid fa-robot"></i>
+                    <i className="fa-solid fa-robot"></i>
                     <strong>bot</strong>
                 </>
             )}
