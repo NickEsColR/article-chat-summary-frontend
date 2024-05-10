@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     isLoadingArticles: false,
+    isWaitingAnswer:false,
     articles: [
         {
             _id: "1",
@@ -45,8 +46,13 @@ export const articleSlice = createSlice({
             state.articles.push(payload);
             state.activeArticle = payload;
         },
-        addChatMessage: (state, {payload}) => {
+        addQuestion: (state, {payload}) => {
             state.activeArticle.chat.push(payload);
+            state.isWaitingAnswer = true;
+        },
+        addAnswer: (state, {payload}) => {
+            state.activeArticle.chat.push(payload);
+            state.isWaitingAnswer = false;
         },
         setChatMessages: (state, {payload}) => {
             state.activeArticle.chat = payload;
@@ -74,7 +80,8 @@ export const articleSlice = createSlice({
 export const {
     setActiveArticle,
     addNewArticle,
-    addChatMessage,
+    addQuestion,
+    addAnswer,
     setChatMessages,
     deleteArticle,
     onLoadArticles,

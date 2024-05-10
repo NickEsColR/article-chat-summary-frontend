@@ -20,7 +20,6 @@ export const Sidebar = () => {
                                 key={article._id}
                                 className="nav-link text-white article d-flex justify-content-between align-items-center"
                                 onClick={() => {
-                                    console.log("clicked");
                                     onSetActiveArticle(article);
                                 }}
                             >

@@ -1,9 +1,11 @@
 import React from "react";
-import { useUiStore } from "../../hooks";
+import { useArticleStore, useUiStore } from "../../hooks";
 
 export const Header = () => {
     const { openSummaryModal, isSummaryModalOpen, closeSummaryModal } =
         useUiStore();
+
+    const {activeArticle} = useArticleStore()
 
     const onClick = () => {
         isSummaryModalOpen ? closeSummaryModal() : openSummaryModal();
@@ -13,7 +15,7 @@ export const Header = () => {
             className="navbar border-bottom col-9"
             style={{ position: "fixed", top: 0, zIndex: 1000 }}
         >
-            <span className="navbar-brand">&nbsp;&nbsp;&nbsp;Articulo 1</span>
+            <span className="navbar-brand">&nbsp;&nbsp;&nbsp;{activeArticle.title}</span>
             <button className="navbar-text btn" onClick={onClick}>
                 <i
                     className={`${
