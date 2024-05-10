@@ -41,6 +41,7 @@ export const articleSlice = createSlice({
     reducers: {
         setActiveArticle: (state, {payload}) => {
             state.activeArticle = payload;
+            state.isWaitingAnswer = true;
         },
         addNewArticle: (state, {payload}) => {
             state.articles.push(payload);
@@ -56,6 +57,7 @@ export const articleSlice = createSlice({
         },
         setChatMessages: (state, {payload}) => {
             state.activeArticle.chat = payload;
+            state.isWaitingAnswer = false;
         },
         deleteArticle: (state, {payload}) => {
             state.articles = state.articles.filter(
