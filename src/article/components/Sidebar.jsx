@@ -19,6 +19,10 @@ export const Sidebar = () => {
                             <li
                                 key={article._id}
                                 className="nav-link text-white article d-flex justify-content-between align-items-center"
+                                onClick={() => {
+                                    console.log("clicked");
+                                    onSetActiveArticle(article);
+                                }}
                             >
                                 {article.title}
                                 <button

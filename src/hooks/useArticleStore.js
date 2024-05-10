@@ -11,7 +11,7 @@ export const useArticleStore = () => {
      * @param {object} article - The article to set as active
      */
     const onSetActiveArticle = (article) => {
-        dispatch(setActiveArticle)
+        dispatch(setActiveArticle(article))
     }
 
     const onDeleteArticle = (id) => {
