@@ -1,9 +1,20 @@
+import { useEffect } from "react";
 import { useArticleStore, useUiStore } from "../../hooks";
 import "../styles/sidebar.css";
 
 export const Sidebar = () => {
-    const { articles, onSetActiveArticle, onDeleteArticle } = useArticleStore();
+    const {
+        articles,
+        onSetActiveArticle,
+        onDeleteArticle,
+        startLoadingArticles,
+        isLoadingArticles,
+    } = useArticleStore();
     const { isNewArticleOpen, openNewArticle } = useUiStore();
+
+    useEffect(() => {
+        startLoadingArticles();
+    }, []);
 
     return (
         <div
@@ -14,7 +25,12 @@ export const Sidebar = () => {
             <hr style={{ marginTop: 0 }} />
 
             <div className="articles-container overflow-auto">
-                <ul className="nav flex-column mb-auto nav-pills">
+                <ul className="nav flex-column mb-auto nav-pills align-items-center">
+                    {isLoadingArticles && (
+                        <div className="spinner-border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                    )}
                     {articles.map((article) => {
                         return (
                             <li

@@ -1,38 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    isLoadingArticles: false,
+    isLoadingArticles: true,
     isWaitingAnswer:false,
-    articles: [
-        {
-            _id: "1",
-            title: "Article 1",
-            summary:
-                "Incididunt irure sit sint reprehenderit qui amet consequat. Amet cillum non reprehenderit ut anim nisi. Velit fugiat ad deserunt cupidatat do do aute. Tempor aute pariatur tempor minim excepteur nisi cupidatat ullamco consectetur commodo. Cillum nostrud eiusmod sunt laboris voluptate sint. Ea ad non qui et nulla dolore excepteur elit amet. Non aliqua mollit culpa ad incididunt est.",
-        },
-        {
-            _id: "2",
-            title: "Article 2",
-            summary:
-                "Incididunt irure sit sint reprehenderit qui amet consequat. Amet cillum non reprehenderit ut anim nisi. Velit fugiat ad deserunt cupidatat do do aute. Tempor aute pariatur tempor minim excepteur nisi cupidatat ullamco consectetur commodo. Cillum nostrud eiusmod sunt laboris voluptate sint. Ea ad non qui et nulla dolore excepteur elit amet. Non aliqua mollit culpa ad incididunt est.",
-        },
-    ],
-    activeArticle: {
-        _id: "1",
-        title: "Article 1",
-        summary:
-            "Incididunt irure sit sint reprehenderit qui amet consequat. Amet cillum non reprehenderit ut anim nisi. Velit fugiat ad deserunt cupidatat do do aute. Tempor aute pariatur tempor minim excepteur nisi cupidatat ullamco consectetur commodo. Cillum nostrud eiusmod sunt laboris voluptate sint. Ea ad non qui et nulla dolore excepteur elit amet. Non aliqua mollit culpa ad incididunt est.",
-        chat: [
-            {
-                role: "user",
-                content: "Hello",
-            },
-            {
-                role: "bot",
-                content: "Hi! How can I help you today?",
-            },
-        ],
-    },
+    articles: [],
+    activeArticle: null
 };
 
 export const articleSlice = createSlice({
