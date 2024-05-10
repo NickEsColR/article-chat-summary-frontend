@@ -4,7 +4,7 @@ import { setActiveArticle } from "../store";
 
 export const useArticleStore = () => {
   const dispatch = useDispatch();
-  const {activeArticle} = useSelector((state) => state.article);
+  const {activeArticle, articles} = useSelector((state) => state.article);
 
     /**
      * Function to set the selected article as active
@@ -17,6 +17,7 @@ export const useArticleStore = () => {
     return {
         //properties
         activeArticle,
+        articles,
 
         //methods
         onSetActiveArticle

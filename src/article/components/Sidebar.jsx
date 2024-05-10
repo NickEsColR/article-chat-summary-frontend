@@ -1,12 +1,9 @@
+import { useArticleStore } from "../../hooks";
 import "../styles/sidebar.css";
 
-const tempArticles = [
-    { id: 1, title: "Article 1" },
-    { id: 2, title: "Article 2" },
-    { id: 3, title: "Article 3" },
-];
-
 export const Sidebar = () => {
+    const { articles } = useArticleStore();
+
     return (
         <div
             className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
@@ -17,7 +14,7 @@ export const Sidebar = () => {
 
             <div className="articles-container overflow-auto">
                 <ul className="nav flex-column mb-auto nav-pills">
-                    {tempArticles.map((article) => {
+                    {articles.map((article) => {
                         return (
                             <li
                                 key={article.id}
