@@ -9,6 +9,8 @@ import {
     setChatMessages,
 } from "../store";
 
+import { articleApi } from "../api";
+
 export const useArticleStore = () => {
     const dispatch = useDispatch();
     const { activeArticle, articles, isWaitingAnswer, isLoadingArticles } =
@@ -81,24 +83,13 @@ export const useArticleStore = () => {
      */
     const startLoadingArticles = async () => {
         //TODO: send request to the server to load the articles
-        const articles = [
-            {
-                _id: "1",
-                title: "Article 1",
-                summary:
-                    "Incididunt irure sit sint reprehenderit qui amet consequat. Amet cillum non reprehenderit ut anim nisi. Velit fugiat ad deserunt cupidatat do do aute. Tempor aute pariatur tempor minim excepteur nisi cupidatat ullamco consectetur commodo. Cillum nostrud eiusmod sunt laboris voluptate sint. Ea ad non qui et nulla dolore excepteur elit amet. Non aliqua mollit culpa ad incididunt est.",
-            },
-            {
-                _id: "2",
-                title: "Article 2",
-                summary:
-                    "Incididunt irure sit sint reprehenderit qui amet consequat. Amet cillum non reprehenderit ut anim nisi. Velit fugiat ad deserunt cupidatat do do aute. Tempor aute pariatur tempor minim excepteur nisi cupidatat ullamco consectetur commodo. Cillum nostrud eiusmod sunt laboris voluptate sint. Ea ad non qui et nulla dolore excepteur elit amet. Non aliqua mollit culpa ad incididunt est.",
-            },
-        ];
-
-        setTimeout(() => {
+        try {
+            const {data} = await articleApi.get("/article");
+            const articles = data.articles
             dispatch(onLoadArticles(articles));
-        }, 3000);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return {

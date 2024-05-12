@@ -43,7 +43,7 @@ export const Sidebar = () => {
                                         onSetActiveArticle(article);
                                     }}
                                 >
-                                    {article.title}
+                                    {article.name}
                                 </div>
                                 <button
                                     className="btn btn-dark"
