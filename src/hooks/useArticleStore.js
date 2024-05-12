@@ -8,6 +8,7 @@ import {
     setActiveArticle,
     setChatMessages,
     toggleLoadingArticles,
+    toggleWaitingAnswer,
 } from "../store";
 
 import { articleApi } from "../api";
@@ -51,15 +52,21 @@ export const useArticleStore = () => {
     const startAskingQuestion = async (question) => {
         dispatch(addQuestion({ role: "user", content: question }));
 
-        //TODO: send question to the server and load the answer
-        setTimeout(() => {
-            dispatch(
-                addAnswer({
-                    role: "bot",
-                    content: "I'm sorry, I don't have an answer for that.",
-                })
+        try {
+            const { data } = await articleApi.post(
+                `/article/chat/${activeArticle._id}`,
+                { question }
             );
-        }, 3000);
+            const answer = data.answer;
+            dispatch(addAnswer({ role: "assistant", content: answer}));
+        } catch (error) {
+            Swal.fire(
+                "Error al enviar pregunta",
+                error.response.data.message,
+                "error"
+            );
+            dispatch(toggleWaitingAnswer())
+        }
     };
 
     /**
@@ -68,17 +75,17 @@ export const useArticleStore = () => {
      * @param {string} url - The url of the article
      */
     const startCreatingArticle = async (name, url) => {
-        dispatch(toggleLoadingArticles())
+        dispatch(toggleLoadingArticles());
         try {
-            const {data} = await articleApi.post("/article", {name, url});
-            const newArticle = data.article
+            const { data } = await articleApi.post("/article", { name, url });
+            const newArticle = data.article;
             dispatch(addNewArticle(newArticle));
             dispatch(setActiveArticle(newArticle));
             dispatch(setChatMessages([]));
         } catch (error) {
-            Swal.fire("Error al guardar", error.response.data.message, "error")
+            Swal.fire("Error al guardar", error.response.data.message, "error");
         }
-        dispatch(toggleLoadingArticles())
+        dispatch(toggleLoadingArticles());
     };
 
     /**
@@ -86,8 +93,8 @@ export const useArticleStore = () => {
      */
     const startLoadingArticles = async () => {
         try {
-            const {data} = await articleApi.get("/article");
-            const articles = data.articles
+            const { data } = await articleApi.get("/article");
+            const articles = data.articles;
             dispatch(onLoadArticles(articles));
         } catch (error) {
             console.error(error);

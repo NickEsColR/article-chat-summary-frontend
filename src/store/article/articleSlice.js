@@ -51,6 +51,9 @@ export const articleSlice = createSlice({
         toggleLoadingArticles: (state) => {
             state.isLoadingArticles = !state.isLoadingArticles;
         },
+        toggleWaitingAnswer: (state) => {
+            state.isWaitingAnswer = !state.isWaitingAnswer;
+        }
     },
 });
 
@@ -63,4 +66,5 @@ export const {
     deleteArticle,
     onLoadArticles,
     toggleLoadingArticles,
+    toggleWaitingAnswer
 } = articleSlice.actions;
