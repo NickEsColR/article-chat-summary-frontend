@@ -48,6 +48,9 @@ export const articleSlice = createSlice({
                 }
             });
         },
+        toggleLoadingArticles: (state) => {
+            state.isLoadingArticles = !state.isLoadingArticles;
+        },
     },
 });
 
@@ -59,4 +62,5 @@ export const {
     setChatMessages,
     deleteArticle,
     onLoadArticles,
+    toggleLoadingArticles,
 } = articleSlice.actions;

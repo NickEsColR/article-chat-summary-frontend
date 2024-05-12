@@ -7,9 +7,11 @@ import {
     onLoadArticles,
     setActiveArticle,
     setChatMessages,
+    toggleLoadingArticles,
 } from "../store";
 
 import { articleApi } from "../api";
+import Swal from "sweetalert2";
 
 export const useArticleStore = () => {
     const dispatch = useDispatch();
@@ -61,28 +63,28 @@ export const useArticleStore = () => {
     };
 
     /**
-     * Function to start creating an article
+     * Function to start creating an article and save it
      * @param {string} title - The title of the article
      * @param {string} url - The url of the article
      */
-    const startCreatingArticle = async (title, url) => {
-        //TODO: send request to the server to create the article
-        const newArticle = {
-            id: articles.length + 1,
-            title,
-            summary:
-                "Amet ad commodo ut sunt laborum irure proident sunt fugiat anim veniam nostrud. Eu quis deserunt sint ea et anim eu ex elit est minim minim minim. Reprehenderit incididunt consectetur aute aliquip do fugiat reprehenderit officia proident est sit. Ut quis amet est laboris excepteur enim dolor duis do nulla laboris ea et. Dolore eu esse anim laboris ad id. Sunt aliquip veniam ex do enim eu fugiat minim in.",
-        };
-        dispatch(addNewArticle(newArticle));
-        dispatch(setActiveArticle(newArticle));
-        dispatch(setChatMessages([]));
+    const startCreatingArticle = async (name, url) => {
+        dispatch(toggleLoadingArticles())
+        try {
+            const {data} = await articleApi.post("/article", {name, url});
+            const newArticle = data.article
+            dispatch(addNewArticle(newArticle));
+            dispatch(setActiveArticle(newArticle));
+            dispatch(setChatMessages([]));
+        } catch (error) {
+            Swal.fire("Error al guardar", error.response.data.message, "error")
+        }
+        dispatch(toggleLoadingArticles())
     };
 
     /**
      * Function to start loading the articles
      */
     const startLoadingArticles = async () => {
-        //TODO: send request to the server to load the articles
         try {
             const {data} = await articleApi.get("/article");
             const articles = data.articles

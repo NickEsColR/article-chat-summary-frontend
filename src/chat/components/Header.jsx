@@ -15,7 +15,7 @@ export const Header = () => {
             className="navbar border-bottom col-9"
             style={{ position: "fixed", top: 0, zIndex: 1000 }}
         >
-            <h1 className="navbar-brand">&nbsp;&nbsp;&nbsp;{activeArticle.title}</h1>
+            <h1 className="navbar-brand">&nbsp;&nbsp;&nbsp;{activeArticle.name}</h1>
             <button className="navbar-text btn" onClick={onClick}>
                 <i
                     className={`${

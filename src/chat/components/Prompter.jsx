@@ -1,7 +1,7 @@
 import { useArticleStore } from "../../hooks";
 
 export const Prompter = () => {
-    const { startAskingQuestion, isWaitingAnswer,scrollToBottom } = useArticleStore();
+    const { startAskingQuestion, isWaitingAnswer } = useArticleStore();
     
 
     const onSubmit = (event) => {
