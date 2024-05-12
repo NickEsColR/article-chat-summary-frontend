@@ -25,15 +25,17 @@ export const useArticleStore = () => {
      */
     const onSetActiveArticle = async (article) => {
         dispatch(setActiveArticle(article));
-        //TODO: request messages to the server
-        setTimeout(() => {
-            dispatch(
-                setChatMessages([
-                    { role: "bot", content: "Hello" },
-                    { role: "bot", content: "Hi! How can I help you today?" },
-                ])
+        try {
+            const { data } = await articleApi.get(`/article/${article._id}`);
+            const chat = data.chat;
+            dispatch(setChatMessages(chat));
+        } catch (error) {
+            Swal.fire(
+                "Error al cargar mensajes",
+                error.response.data.message,
+                "error"
             );
-        }, 3000);
+        }
     };
 
     /**
