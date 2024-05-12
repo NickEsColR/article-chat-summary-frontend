@@ -40,9 +40,17 @@ export const useArticleStore = () => {
      * Function to delete an article
      * @param {string} id - The id of the article to delete
      */
-    const onDeleteArticle = (id) => {
-        //TODO; send request to the server to delete the article
-        dispatch(deleteArticle(id));
+    const onDeleteArticle = async (id) => {
+        try {
+            await articleApi.delete(`/article/${id}`);
+            dispatch(deleteArticle(id));
+        } catch (error) {
+            Swal.fire(
+                "Error al eliminar",
+                error.response.data.message,
+                "error"
+            );
+        }
     };
 
     /**
@@ -58,14 +66,14 @@ export const useArticleStore = () => {
                 { question }
             );
             const answer = data.answer;
-            dispatch(addAnswer({ role: "assistant", content: answer}));
+            dispatch(addAnswer({ role: "assistant", content: answer }));
         } catch (error) {
             Swal.fire(
                 "Error al enviar pregunta",
                 error.response.data.message,
                 "error"
             );
-            dispatch(toggleWaitingAnswer())
+            dispatch(toggleWaitingAnswer());
         }
     };
 
